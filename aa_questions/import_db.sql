@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE users(
+CREATE TABLE  users(
   id INTEGER PRIMARY KEY,
   fname VARCHAR(255) NOT NULL, -- TODO: Do we need NOT NULL?
   lname VARCHAR(255) NOT NULL
@@ -56,4 +56,6 @@ VALUES
 INSERT INTO
   questions(title, body, author_id)
 VALUES
-  ('Ned Questions', 'NED NED NED' 1),
+  ('Ned Questions', 'NED NED NED', 1),
+  ('KUS Questions', 'KUSH KUSH K', 2),
+  ('Ear Questions', 'MEOW MEOW M', 3);
