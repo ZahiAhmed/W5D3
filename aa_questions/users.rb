@@ -28,4 +28,9 @@ class Users
     @fname = options['fname']
     @lname = options['lname']
   end
+
+  # questions parameter represents Array of questions instances
+  def authored_questions
+    Questions.find_by_author_id(@id)
+  end
 end

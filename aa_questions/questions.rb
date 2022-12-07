@@ -10,14 +10,27 @@ class Questions
     data.map { |datum| Questions.new(datum) }
   end
 
-  def self.find_by_id(arg_id)
-    data = QuestionsDB.instance.execute(<<-SQL)
+  def self.find_by_id(id)
+    data = QuestionsDB.instance.execute(<<-SQL, id)
       SELECT
         *
       FROM
         questions
       WHERE
-        id = #{arg_id}#{' '}
+        id = ?
+    SQL
+
+    data.map { |datum| Questions.new(datum) }
+  end
+
+  def self.find_by_author_id(author_id)
+    data = QuestionsDB.instance.execute(<<-SQL, author_id)
+      SELECT
+        * 
+      FROM
+        questions
+      WHERE
+        author_id = ?
     SQL
 
     data.map { |datum| Questions.new(datum) }
