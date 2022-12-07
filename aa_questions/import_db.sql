@@ -26,12 +26,12 @@ CREATE TABLE question_follows(
 
 CREATE TABLE replies(
   id INTEGER PRIMARY KEY,
-  subject VARCHAR(255) NOT NULL,
   body TEXT NOT NULL,
+  subj INTEGER NOT NULL,
   user_id INTEGER,
   parent_reply_id INTEGER,
 
-  FOREIGN KEY (subject) REFERENCES questions(title),
+  FOREIGN KEY (subj) REFERENCES questions(id),
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (parent_reply_id) REFERENCES replies(id)
 );
