@@ -1,17 +1,4 @@
-require 'sqlite3'
-require 'singleton'
-
-class QuestionsDB < SQLite3::Database
-  include Singleton
-
-  def initialize
-    super('questions.rb')
-    self.type_translation = true
-    self.results_as_hash = true
-  end
-
-end
-
+require 'questions_db'
 class Questions
 
   attr_accessor :id, :title, :body, :author_id
@@ -21,9 +8,21 @@ class Questions
     data.map { |datum| Questions.new(datum) }
   end
 
-  def self.find_by_id(id)
+  def self.find_by_id(arg_id)
+    QuestionsDB.instance.execute(<<-SQL)
+      SELECT
+        *
+      FROM
+        questions
+      WHERE
+        id = #{arg_id} 
+    SQL
   end
 
-  
-
+  def initialize(options)
+    @id = options["id"]
+    @title = options["title"]
+    @body = options["body"]
+    @author_id = options["author_id"]
+  end
 end
