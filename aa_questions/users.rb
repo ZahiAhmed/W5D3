@@ -10,6 +10,19 @@ class Users
     data.map { |datum| Users.new(datum) }
   end
 
+  def self.find_by_id(id)
+    data = QuestionsDB.instance.execute(<<-SQL, id)
+      SELECT
+        *
+      FROM
+        users
+      WHERE
+        id = ?
+    SQL
+
+    data.map { |datum| Users.new(datum) }
+  end
+
   def self.find_by_name(fname, lname)
     user_data = QuestionsDB.instance.execute(<<-SQL, fname, lname)
       SELECT
@@ -32,5 +45,9 @@ class Users
   # questions parameter represents Array of questions instances
   def authored_questions
     Questions.find_by_author_id(@id)
+  end
+
+  def authored_replied
+    Replies.find_by_user_id(@id)
   end
 end

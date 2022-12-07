@@ -55,4 +55,29 @@ class Replies
     @user_id = options['user_id']
     @parent_reply_id = options['parent_reply_id']
   end
+
+  def author
+    Users.find_by_id(@user_id)
+  end
+
+  def question 
+    Questions.find_by_id(@subj)
+  end
+
+  def parent_reply
+    Replies.find_by_id(@parent_reply_id)
+  end
+
+  def child_replies
+    data = QuestionsDB.instance.execute(<<-SQL @id)
+    SELECT
+        *
+    FROM
+        replies
+    WHERE
+        parent_reply_id = ?
+    SQL
+
+    data.map {|datum| Replies.new(datum)}
+  end
 end

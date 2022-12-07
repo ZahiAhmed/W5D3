@@ -42,4 +42,13 @@ class Questions
     @body = options['body']
     @author_id = options['author_id']
   end
+
+  def author
+    Users.find_by_id(@user_id)
+  end
+
+  def replies
+    Replies.find_by_question_id(@id)
+  end
+
 end
