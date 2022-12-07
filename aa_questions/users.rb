@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'questions_db'
 
 class Users
-
   attr_accessor :id, :fname, :lname
 
   def self.all
@@ -21,7 +22,6 @@ class Users
 
     user_data.map { |datum| Users.new(datum) }
   end
-
 
   def initialize(options)
     @id = options['id']
