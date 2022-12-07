@@ -1,6 +1,6 @@
-require 'questions_db'
-class Questions
+require_relative 'questions_db'
 
+class Questions
   attr_accessor :id, :title, :body, :author_id
 
   def self.all

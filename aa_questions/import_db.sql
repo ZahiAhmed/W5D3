@@ -49,9 +49,9 @@ CREATE TABLE question_likes(
 INSERT INTO 
   users(fname, lname)
 VALUES
-  ('Ned', 'Ned LastName'),
-  ('KUS', 'KUS LastName'),
-  ('Earl', 'Earl LastName');
+  ('Ned', 'NedLastName'),
+  ('KUS', 'KUSLastName'),
+  ('Earl', 'EarlLastName');
 
 INSERT INTO
   questions(title, body, author_id)
